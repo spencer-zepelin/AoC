@@ -1,4 +1,4 @@
-with open("2020/5/in.txt") as file:
+with open("2020/res/in05.txt") as file:
     tickets = file.read().split("\n")
 
 
@@ -22,7 +22,6 @@ for ticket in tickets:
         highest = seatId
 
 print("Part 1: ", highest)
-
 
 falseSeats = set()
 for seat in seatsRemaining:
