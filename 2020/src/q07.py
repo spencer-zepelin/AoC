@@ -6,11 +6,13 @@ contained = {}
 inverse = {}
 for rule in rules:
     outer, inners = rule.split(" bags contain ")
-    inners = inners[:-1].split(", ")
+    inners = inners.split(", ")
     iCurr = inverse.get(outer, [])
     for inner in inners:
         if inner[0].isdigit():
-            num, inner = int(inner.split(" ")[0]), inner[2:].split(" bag")[0]
+            num, *inner = inner.split(" ")
+            num = int(num)
+            inner = " ".join(inner[:2])  # modifier, color
             current = contained.get(inner, set())
             current.add(outer)
             contained[inner] = current
