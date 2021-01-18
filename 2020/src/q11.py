@@ -1,4 +1,4 @@
-with open("2020/11/in.txt") as file:
+with open("2020/res/in11.txt") as file:
     rows = file.read().split("\n")
 
 numC = len(rows[0])
