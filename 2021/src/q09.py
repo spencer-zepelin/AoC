@@ -20,7 +20,7 @@ def find_basin(topo, row, col):
     h = len(topo)
     seen = set()
     q = deque([(row, col)])
-    seen.add(f'{row}-{col}')
+    seen.add(f"{row}-{col}")
     while len(q) != 0:
         r, c = q.popleft()
         size += 1
@@ -28,8 +28,13 @@ def find_basin(topo, row, col):
         for diff in [LEFT, RIGHT, UP, DOWN]:
             test_row = r + diff[0]
             test_col = c + diff[1]
-            test_key = f'{test_row}-{test_col}'
-            if is_valid(w, h, test_col, test_row) and topo[test_row][test_col] != 9 and val < topo[test_row][test_col] and test_key not in seen:
+            test_key = f"{test_row}-{test_col}"
+            if (
+                is_valid(w, h, test_col, test_row)
+                and topo[test_row][test_col] != 9
+                and val < topo[test_row][test_col]
+                and test_key not in seen
+            ):
                 seen.add(test_key)
                 q.append((test_row, test_col))
     return size
@@ -53,7 +58,7 @@ for row in range(h):
         right = True if col == (w - 1) else val < topo[row][col + 1]
 
         if above and left and below and right:
-            pt1 += (val + 1)
+            pt1 += val + 1
             basin_size = find_basin(topo, row, col)
             basins.append(basin_size)
 

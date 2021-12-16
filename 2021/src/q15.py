@@ -23,9 +23,9 @@ def risk_level(val_grid):
     visited = set()
     scannable = set([(0, 0)])
     print_chunk = w * h // 100
-    while (h-1, w-1) not in visited:
+    while (h - 1, w - 1) not in visited:
         if len(visited) % print_chunk == 0:
-            print(f'{len(visited) // print_chunk}% complete')
+            print(f"{len(visited) // print_chunk}% complete")
         row, col = next_node(visited, scannable, dist_grid)
         visited.add((row, col))
         scannable.discard((row, col))
@@ -34,11 +34,14 @@ def risk_level(val_grid):
         for diff in diffs:
             n_col = col + diff[1]
             n_row = row + diff[0]
-            if valid_coord(n_row, n_col, w, h) and (dist_grid[n_row][n_col] == -1 or val + val_grid[n_row][n_col] < dist_grid[n_row][n_col]):
+            if valid_coord(n_row, n_col, w, h) and (
+                dist_grid[n_row][n_col] == -1
+                or val + val_grid[n_row][n_col] < dist_grid[n_row][n_col]
+            ):
                 dist_grid[n_row][n_col] = val + val_grid[n_row][n_col]
                 scannable.add((n_row, n_col))
 
-    return dist_grid[h-1][w-1]
+    return dist_grid[h - 1][w - 1]
 
 
 with open("2021/res/in15.txt") as file:

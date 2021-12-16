@@ -15,12 +15,12 @@ def get_score(pair_dict):
 with open("2021/res/in14.txt") as file:
     start, str_rules = file.read().split("\n\n")
 
-rules = [rule.split(' -> ') for rule in str_rules.split('\n')]
+rules = [rule.split(" -> ") for rule in str_rules.split("\n")]
 rules_memo = {k: v for k, v in rules}
 
 poly_memo = {}
 for i in range(len(start) - 1):
-    key = start[i:(i+2)]
+    key = start[i : (i + 2)]
     val = poly_memo.get(key, 0)
     poly_memo[key] = val + 1
 

@@ -2,8 +2,7 @@ with open("2021/res/in11.txt") as file:
     lines = file.read().split("\n")
 
 DIM = 10
-deltas = [(-1, -1), (-1, 0), (-1, 1), (0, -1),
-          (0, 0), (0, 1), (1, -1), (1, 0), (1, 1)]
+deltas = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 0), (0, 1), (1, -1), (1, 0), (1, 1)]
 
 
 class octo:
@@ -21,7 +20,11 @@ def flash(grid, row, col):
     for delta in deltas:
         adj_row = row + delta[0]
         adj_col = col + delta[1]
-        if valid_pos(adj_row, adj_col) and not grid[adj_row][adj_col].flashed and grid[adj_row][adj_col].energy < 10:
+        if (
+            valid_pos(adj_row, adj_col)
+            and not grid[adj_row][adj_col].flashed
+            and grid[adj_row][adj_col].energy < 10
+        ):
             grid[adj_row][adj_col].energy += 1
             if grid[adj_row][adj_col].energy == 10:
                 new_flash = True

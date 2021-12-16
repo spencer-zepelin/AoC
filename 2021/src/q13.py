@@ -1,6 +1,6 @@
 def y_fold(grid, fold_val):
     top = grid[:fold_val]
-    bottom = grid[(fold_val+1):]
+    bottom = grid[(fold_val + 1) :]
 
     for i, row in enumerate(bottom):
         for j, col in enumerate(row):
@@ -16,7 +16,7 @@ def x_fold(grid, fold_val):
     right = []
     for row in grid:
         left.append(row[:fold_val])
-        right.append(row[(fold_val+1):])
+        right.append(row[(fold_val + 1) :])
 
     for i, row in enumerate(right):
         for j, col in enumerate(row):
@@ -30,11 +30,15 @@ def x_fold(grid, fold_val):
 with open("2021/res/in13.txt") as file:
     coord_block, instruction_block = file.read().split("\n\n")
 
-coords = [(int(str_coord.split(',')[1]), int(str_coord.split(',')[0]))
-          for str_coord in coord_block.split('\n')]
+coords = [
+    (int(str_coord.split(",")[1]), int(str_coord.split(",")[0]))
+    for str_coord in coord_block.split("\n")
+]
 
-instructions = [(inst.split(' ')[-1].split('=')[0], int(inst.split(' ')
-                 [-1].split('=')[1])) for inst in instruction_block.split('\n')]
+instructions = [
+    (inst.split(" ")[-1].split("=")[0], int(inst.split(" ")[-1].split("=")[1]))
+    for inst in instruction_block.split("\n")
+]
 
 width = max(col + 1 for _, col in coords)
 height = max(row + 1 for row, _ in coords)
@@ -46,7 +50,7 @@ for row, col in coords:
 
 pt1 = False
 for fold_type, fold_val in instructions:
-    if fold_type == 'x':
+    if fold_type == "x":
         grid = x_fold(grid, fold_val)
     else:
         grid = y_fold(grid, fold_val)
@@ -54,8 +58,8 @@ for fold_type, fold_val in instructions:
         pt1 = sum(sum(row) for row in grid)
 
 for row in grid:
-    chars = ['#' if val else '.' for val in row]
-    print(''.join(chars))
+    chars = ["#" if val else "." for val in row]
+    print("".join(chars))
 
 print("Part 1: ", pt1)
 print("Part 2: BLKJRBAG")  # Answer hardcoded from visual examination

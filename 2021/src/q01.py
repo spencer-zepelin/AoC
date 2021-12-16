@@ -13,7 +13,7 @@ for val in vals:
 curr_sum = sum(vals[0:3])
 ctr2 = 0
 for i in range(len(vals[:-2])):
-    val_sum = sum(vals[i:(i+3)])
+    val_sum = sum(vals[i : (i + 3)])
     if val_sum > curr_sum:
         ctr2 += 1
     curr_sum = val_sum

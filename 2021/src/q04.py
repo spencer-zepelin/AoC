@@ -20,8 +20,8 @@ def board_won(board, called):
 
 def string_to_board(card):
     board = []
-    for row in card.split('\n'):
-        board.append([int(val) for val in row.split(' ')])
+    for row in card.split("\n"):
+        board.append([int(val) for val in row.split(" ")])
     return board
 
 
@@ -31,15 +31,17 @@ def print_score(board, called, number, part_num):
         for num in row:
             if num not in called:
                 sum += num
-    print(f'Part {part_num}: ', sum * number)
+    print(f"Part {part_num}: ", sum * number)
 
 
 with open("2021/res/in04.txt") as file:
-    bingo, *all_cards = file.read().replace('  ', ' ').replace('\n ', '\n').split("\n\n")
+    bingo, *all_cards = (
+        file.read().replace("  ", " ").replace("\n ", "\n").split("\n\n")
+    )
 
-balls = [int(val) for val in bingo.split(',')]
+balls = [int(val) for val in bingo.split(",")]
 
-cards = [card.split('\n') for card in all_cards]
+cards = [card.split("\n") for card in all_cards]
 
 winner_found = False
 balls_called = set()

@@ -15,7 +15,7 @@ print("Part 1: ", pt1)
 # Part 2
 pt2 = 0
 for i in range(len(in_vals)):
-    all_vals = [''.join(sorted(val)) for val in in_vals[i] + out_vals[i]]
+    all_vals = ["".join(sorted(val)) for val in in_vals[i] + out_vals[i]]
     string_key = {}
     num_key = {}
     known_letter = {}
@@ -35,7 +35,7 @@ for i in range(len(in_vals)):
     # Find A
     for char in num_key[7]:
         if char not in num_key[1]:
-            known_letter['a'] = char
+            known_letter["a"] = char
             break
     # Find 6 and C
     for val in all_vals:
@@ -43,34 +43,41 @@ for i in range(len(in_vals)):
             num_key[6] = val
             string_key[val] = 6
             c = num_key[1][0] if num_key[1][0] not in val else num_key[1][1]
-            known_letter['c'] = c
+            known_letter["c"] = c
     # Find F
-    known_letter['f'] = num_key[1][0] if num_key[1][0] != known_letter['c'] else num_key[1][1]
+    known_letter["f"] = (
+        num_key[1][0] if num_key[1][0] != known_letter["c"] else num_key[1][1]
+    )
     # Find 3 and D
     for val in all_vals:
-        if len(val) == 5 and known_letter['a'] in val and known_letter['c'] in val and known_letter['f'] in val:
+        if (
+            len(val) == 5
+            and known_letter["a"] in val
+            and known_letter["c"] in val
+            and known_letter["f"] in val
+        ):
             string_key[val] = 3
             num_key[3] = val
             for char in val:
                 if char in num_key[4] and char not in num_key[1]:
-                    known_letter['d'] = char
+                    known_letter["d"] = char
                     break
             break
     # Find 2
     for val in all_vals:
-        if len(val) == 5 and known_letter['f'] not in val:
+        if len(val) == 5 and known_letter["f"] not in val:
             string_key[val] = 2
             num_key[2] = val
             break
     # Find 5
     for val in all_vals:
-        if len(val) == 5 and known_letter['c'] not in val:
+        if len(val) == 5 and known_letter["c"] not in val:
             string_key[val] = 5
             num_key[5] = val
             break
     # Find 9
     for val in all_vals:
-        if len(val) == 6 and known_letter['d'] in val and known_letter['c'] in val:
+        if len(val) == 6 and known_letter["d"] in val and known_letter["c"] in val:
             string_key[val] = 9
             num_key[9] = val
             break
@@ -83,7 +90,7 @@ for i in range(len(in_vals)):
                     num_key[j] = val
 
     # Decode
-    time = ''
+    time = ""
     for val in all_vals[-4:]:
         time += str(string_key[val])
     pt2 += int(time)

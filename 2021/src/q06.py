@@ -19,6 +19,6 @@ for day in range(days2):
             new_school[i] = school[i + 1]
     school = new_school
     if day == days1 - 1:
-        print('Part 1: ', sum(school.values()))
+        print("Part 1: ", sum(school.values()))
 
-print('Part 2: ', sum(school.values()))
+print("Part 2: ", sum(school.values()))
